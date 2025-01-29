@@ -1,9 +1,9 @@
 import docker 
 
-def list_image():
-    # to log in docker
-    client = docker.from_env()
+client = docker.from_env()
 
+def list_image():
+    
     # get images
     images = client.images.list(all=True)
 
@@ -19,8 +19,7 @@ if __name__ == "__main__":
     list_image()
 
 def list_ubuntu_images():
-
-    client = docker.from_env()
+    
     images = client.images.list(all=True)
 
     for image in images:
