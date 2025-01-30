@@ -1,5 +1,6 @@
 import requests
 import configparser
+import logging
 
 def check_api_status(url): 
     try:
@@ -22,7 +23,22 @@ def load_config():
         print(f"Error reading config file: {e}")
         exit(1)
 
-api_url = load_config()
-status = check_api_status(api_url)
-print(f"Api status: {status}")
+def setup_logging():
+    logging.basicConfig(
+        filename= "api_monitor.log",
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+
+def log_status(status):
+    logging.info(f"Api status: {status}") # save the api status to the log file
+
+
+
+if __name__ == "__main__":
+    setup_logging() # configure the logging module
+    api_url = load_config() # load the api url from the config file
+    status = check_api_status(api_url)
+    log_status(status)
+    print(f"Api status: {status}")
 
