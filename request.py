@@ -34,7 +34,7 @@ def log_status(status):
     logging.info(f"Api status: {status}") # save the api status to the log file
 
 def alert_error(status):
-    logging.error(f"Api status: {status}") # save the api status to the log file
+    logging.error(f"ALERT : API is offline or in error {status}") # save the api status to the log file
 
 
 
@@ -45,5 +45,7 @@ if __name__ == "__main__":
     log_status(status)
     if "offline" in status or "error" in status:
         alert_error(status)
-    print(f"Api status: {status}")
+        print(f"ALERT: API is offline or in error. Status :{status}")
+    else:
+        print(f"Api status: {status}")
 
