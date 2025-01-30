@@ -33,6 +33,9 @@ def setup_logging():
 def log_status(status):
     logging.info(f"Api status: {status}") # save the api status to the log file
 
+def alert_error(status):
+    logging.error(f"Api status: {status}") # save the api status to the log file
+
 
 
 if __name__ == "__main__":
@@ -40,5 +43,7 @@ if __name__ == "__main__":
     api_url = load_config() # load the api url from the config file
     status = check_api_status(api_url)
     log_status(status)
+    if "offline" in status or "error" in status:
+        alert_error(status)
     print(f"Api status: {status}")
 
