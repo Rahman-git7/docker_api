@@ -15,7 +15,7 @@ def check_api_status(url):
         return f"error: {e}"
 
 def load_config():
-    api_url = os.getenv("API_URL", "https://jsonplaceholder.typicode.com/posts") # load the api url from the environment variable
+    api_url = os.getenv("API_URL") # load the api url from the environment variable
     return api_url
 
 def setup_logging():
