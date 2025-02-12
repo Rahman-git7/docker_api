@@ -1,5 +1,5 @@
 import requests
-import configparser
+import os
 import logging
 
 def check_api_status(url): 
@@ -15,19 +15,16 @@ def check_api_status(url):
         return f"error: {e}"
 
 def load_config():
-    try:
-        config = configparser.ConfigParser() # create a new instance of ConfigParser to read the config file
-        config.read("config.ini")
-        return config["DEFAULT"]["url"]
-    except (configparser.Error, KeyError) as e:
-        print(f"Error reading config file: {e}")
-        exit(1)
+    api_url = os.getenv("API_URL", "https://jsonplaceholder.typicode.com/posts") # load the api url from the environment variable
+    return api_url
 
 def setup_logging():
+    log_dir = "/app/logs" # define the log directory
+    os.makedirs(log_dir, exist_ok=True)
     logging.basicConfig(
-        filename= "api_monitor.log",
+        filename=os.path.join(log_dir, "api_monitoring.log"),
         level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
+        format="%(asctime)s - %(levelname)s - %(message)s"
     )
 
 def log_status(status):

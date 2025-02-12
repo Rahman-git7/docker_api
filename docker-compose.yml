@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  api-monitor:
+    build: .
+    environment:
+      - API_URL=${API_URL}
+    volumes:
+      - ./logs:/app/logs  # Monte le dossier logs de l'hôte vers /app/logs dans le conteneur
