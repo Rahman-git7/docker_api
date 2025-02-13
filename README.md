@@ -19,7 +19,7 @@ Solution complète de monitoring d'API implémentant des bonnes pratiques DevOps
 
 #### Mode natif
 ```bash
-python monitor.py
+python request.py
 ```
 
 #### Avec Docker
