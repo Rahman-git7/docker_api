@@ -32,4 +32,4 @@ jobs:
       - name: Run tests
         env:
           API_URL: ${{ secrets.API_URL }}
-        run: pytest test/
+        run: pytest tests/
