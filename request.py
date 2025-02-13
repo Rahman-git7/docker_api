@@ -6,18 +6,17 @@ from typing import Optional
 class APIMonitor:
     """Main class for the API monitor"""
     
-    DEFAULT_API_URL = "https://jsonplaceholder.typicode.com/posts"
-    LOG_DIR = "/app/logs"
+    LOG_DIR = os.getenv("LOG_DIR", "logs")
     LOG_FILE = "api_monitor.log"
     LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 
     def __init__(self):
         self._setup_logging()
         self.api_url = self._load_config()
-
+        
     def _load_config(self) -> str:
         """Load the API URL from environment variables"""
-        api_url = os.getenv("API_URL", self.DEFAULT_API_URL)
+        api_url = os.getenv("API_URL")
         if not api_url:
             raise ValueError("API_URL must be set in environment variables")
         return api_url
